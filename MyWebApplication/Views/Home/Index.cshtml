@@ -1,9 +1,15 @@
 ﻿<html>
 <head>
-    <title>@ViewData["Title"]</title>
     <link rel="stylesheet" type="text/css" href="~/stylesheet.css"/>
 </head>
 <body>
-    <h1>Hello, World!</h1>
+<h1>Hello world! Time is @ViewData["time"]</h1>
+
+    @using (Html.BeginForm("TestSubmit", "Home", FormMethod.Post))
+    {
+        <input type="text" id="message" name="message"/>
+@*        @Html.TextBoxFor(m => m.Message)*@
+        <input type="submit"/>
+    }
 </body>
 </html>

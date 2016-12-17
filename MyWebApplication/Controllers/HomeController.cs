@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using Microsoft.AspNetCore.Mvc;
+using MyWebApplication.Models;
 
 namespace MyWebApplication.Controllers
 {
@@ -6,7 +8,16 @@ namespace MyWebApplication.Controllers
     {
         public IActionResult Index()
         {
-            ViewData["Message"] = "Hello, World!";
+            ViewData["time"] = DateTime.Now.ToString();
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult TestSubmit(SubmitModel model)
+        {
+            var message = "You typed " + model.Message;
+            ViewData["message"] = message;
+            Program.MessageBox(message);
             return View();
         }
     }

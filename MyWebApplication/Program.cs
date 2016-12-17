@@ -1,24 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
+using System.Threading;
+using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MyWebApplication
 {
-    class Program
+    static class Program
     {
-        static void Main(string[] args)
-        {
-            var host = new WebHostBuilder()
-                        .UseKestrel()
-                        .UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", ".."))
-                        .UseStartup<Startup>()
-                        .Build();
+        private static MainForm form;
 
-            host.Run();
+        [STAThread]
+        static void Main()
+        {
+            var cancellationTokenSource = new CancellationTokenSource();
+            var webServerTask = Task.Run(() => StartWebServer(cancellationTokenSource.Token), cancellationTokenSource.Token);
+
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            form = new MainForm();
+            Application.Run(form);
+
+            cancellationTokenSource.Cancel();
+            webServerTask.Wait(5000);
+        }
+
+        private static void StartWebServer(CancellationToken cancellationToken)
+        {
+            var webHostBuilder = new WebHostBuilder()
+                .UseKestrel()
+                .UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", ".."))
+                .UseStartup<Startup>();
+
+            using (var host = webHostBuilder.Build())
+            {
+                host.Run(cancellationToken);
+            }
+        }
+
+        public static void MessageBox(string message)
+        {
+            form.AlertUser(message);
         }
     }
 }
