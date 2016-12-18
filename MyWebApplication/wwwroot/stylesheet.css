@@ -1,4 +1,9 @@
 ﻿body {
     font-family: Arial;
-    color: gray;
+    color: whitesmoke;
+    background-color: #303030;
+}
+
+a {
+    color: white;
 }

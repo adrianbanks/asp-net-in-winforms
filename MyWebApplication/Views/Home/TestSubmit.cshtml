@@ -1,11 +1,16 @@
 ﻿@model MyWebApplication.Models.SubmitModel
 
-<html>
-<head>
-    <link rel="stylesheet" type="text/css" href="~/stylesheet.css"/>
-</head>
-<body>
 <h1>@ViewData["message"]</h1>
-    @Html.ActionLink("Back", "Index")
-</body>
-</html>
+@Html.ActionLink("Back", "Index")
+
+@section scripts
+{
+    <script language="javascript">
+        $(document)
+            .ready(function () {
+                setTimeout(function() {
+                    $("body").css("background-color", "black");
+                }, 3000);
+            });
+    </script>
+}

@@ -71,9 +71,11 @@
     <None Include="project.json" />
     <None Include="Views\Home\TestSubmit.cshtml" />
     <None Include="Views\Home\Index.cshtml" />
-    <None Include="Views\_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="wwwroot\jquery-3.1.1.min.js" />
     <Content Include="wwwroot\stylesheet.css" />
   </ItemGroup>
   <ItemGroup>
@@ -81,6 +83,7 @@
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
