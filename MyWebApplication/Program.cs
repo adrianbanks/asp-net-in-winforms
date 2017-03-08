@@ -30,7 +30,7 @@ namespace MyWebApplication
         {
             var webHostBuilder = new WebHostBuilder()
                 .UseKestrel()
-                .UseUrls("http://localhjost:5000")
+                .UseUrls("http://localhost:5000")
                 .UseContentRoot(Path.Combine(Directory.GetCurrentDirectory(), "..", ".."))
                 .UseStartup<Startup>();
 
